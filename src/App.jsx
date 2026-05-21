@@ -8,8 +8,7 @@ import Stats from './components/Stats'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Journey from './components/Journey'
-import Dashboard from './components/Dashboard'
-import Testimonials from './components/Testimonials'
+
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -46,8 +45,6 @@ export default function App() {
                             <Projects />
                             <Skills />
                             <Journey />
-                            <Dashboard />
-                            <Testimonials />
                             <Contact />
                             <Footer />
                         </div>

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ExternalLink, Baby, Waves, Brain, Smartphone } from 'lucide-react'
+import { ExternalLink, Baby, Waves, Brain, Atom } from 'lucide-react'
 
 const projects = [
     {
@@ -34,14 +34,14 @@ const projects = [
         accent: '#db2777',
     },
     {
-        icon: Smartphone,
-        title: 'React Native CRUD App',
-        description: 'Mobile application with MongoDB Atlas backend, full authentication and CRUD operations.',
-        tags: ['React Native', 'MongoDB', 'Node.js', 'Auth'],
-        badge: null,
-        color: '#34d399',
-        glow: 'rgba(52,211,153,0.25)',
-        accent: '#059669',
+        icon: Atom,
+        title: 'Quantum Computing',
+        description: 'Exploring quantum algorithms, qubit simulations, and the next frontier of computational science.',
+        tags: ['Qiskit', 'Python', 'Quantum', 'Algorithms'],
+        badge: '🔬 Exploring',
+        color: '#fb923c',
+        glow: 'rgba(251,146,60,0.25)',
+        accent: '#ea580c',
     },
 ]
 

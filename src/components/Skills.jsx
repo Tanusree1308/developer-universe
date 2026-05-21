@@ -12,12 +12,11 @@ const skills = [
     { name: 'Firebase', level: 80, color: '#ffca28' },
     { name: 'AWS', level: 65, color: '#ff9900' },
     { name: 'GitHub', level: 88, color: '#a78bfa' },
-    { name: 'React Native', level: 75, color: '#61dafb' },
-    { name: 'Ionic', level: 70, color: '#3880ff' },
-    { name: 'Blockchain', level: 55, color: '#f7931a' },
+    { name: 'Python', level: 75, color: '#3b82f6' },
+    { name: 'TensorFlow', level: 60, color: '#f472b6' },
+    { name: 'Quantum', level: 40, color: '#fb923c' },
 ]
 
-// Constellation positions (normalized 0-1)
 const positions = [
     { x: 0.15, y: 0.2 }, { x: 0.35, y: 0.1 }, { x: 0.55, y: 0.18 },
     { x: 0.75, y: 0.08 }, { x: 0.88, y: 0.25 }, { x: 0.78, y: 0.45 },
@@ -38,30 +37,20 @@ function ConstellationCanvas({ width, height, hoveredIndex }) {
         if (!canvas) return
         const ctx = canvas.getContext('2d')
         ctx.clearRect(0, 0, width, height)
-
         const pts = positions.map(p => ({ x: p.x * width, y: p.y * height }))
-
-        // Draw connections
         connections.forEach(([a, b]) => {
             const isActive = hoveredIndex === a || hoveredIndex === b
             ctx.beginPath()
             ctx.moveTo(pts[a].x, pts[a].y)
             ctx.lineTo(pts[b].x, pts[b].y)
-            ctx.strokeStyle = isActive
-                ? `rgba(167,139,250,0.5)`
-                : `rgba(167,139,250,0.12)`
+            ctx.strokeStyle = isActive ? `rgba(167,139,250,0.5)` : `rgba(167,139,250,0.12)`
             ctx.lineWidth = isActive ? 1.5 : 0.8
             ctx.stroke()
         })
     }, [width, height, hoveredIndex])
 
     return (
-        <canvas
-            ref={canvasRef}
-            width={width}
-            height={height}
-            className="absolute inset-0 pointer-events-none"
-        />
+        <canvas ref={canvasRef} width={width} height={height} className="absolute inset-0 pointer-events-none" />
     )
 }
 
@@ -79,20 +68,16 @@ function SkillNode({ skill, pos, index, containerW, containerH, onHover, isHover
             onMouseEnter={() => onHover(index)}
             onMouseLeave={() => onHover(null)}
         >
-            {/* Glow ring */}
             <motion.div
                 animate={isHovered ? { scale: [1, 1.4, 1] } : {}}
                 transition={{ duration: 1, repeat: isHovered ? Infinity : 0 }}
                 className="absolute rounded-full"
                 style={{
-                    width: 40,
-                    height: 40,
+                    width: 40, height: 40,
                     background: `radial-gradient(circle, ${skill.color}30, transparent)`,
                     border: `1px solid ${skill.color}40`,
                 }}
             />
-
-            {/* Star dot */}
             <div
                 className="w-4 h-4 rounded-full relative z-10"
                 style={{
@@ -101,8 +86,6 @@ function SkillNode({ skill, pos, index, containerW, containerH, onHover, isHover
                     transition: 'box-shadow 0.3s',
                 }}
             />
-
-            {/* Label */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isHovered ? 1 : 0.6 }}
@@ -134,10 +117,7 @@ export default function Skills() {
     useEffect(() => {
         const update = () => {
             if (containerRef.current) {
-                setDims({
-                    w: containerRef.current.offsetWidth,
-                    h: containerRef.current.offsetHeight,
-                })
+                setDims({ w: containerRef.current.offsetWidth, h: containerRef.current.offsetHeight })
             }
         }
         update()
@@ -159,32 +139,15 @@ export default function Skills() {
                     </span>
                     <h2 className="text-4xl lg:text-5xl font-black text-white mb-4">
                         Tech{' '}
-                        <span
-                            style={{
-                                background: 'linear-gradient(135deg, #38bdf8, #a78bfa)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            }}
-                        >
+                        <span style={{ background: 'linear-gradient(135deg, #38bdf8, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                             Galaxy
                         </span>
                     </h2>
-                    <p className="text-slate-400 max-w-md mx-auto">
-                        Hover over the stars to explore my skill universe.
-                    </p>
+                    <p className="text-slate-400 max-w-md mx-auto">Hover over the stars to explore my skill universe.</p>
                 </motion.div>
 
-                {/* Constellation */}
-                <div
-                    ref={containerRef}
-                    className="relative glass rounded-3xl border border-white/5 overflow-hidden"
-                    style={{ height: '480px' }}
-                >
-                    <ConstellationCanvas
-                        width={dims.w}
-                        height={dims.h}
-                        hoveredIndex={hoveredIndex}
-                    />
+                <div ref={containerRef} className="relative glass rounded-3xl border border-white/5 overflow-hidden" style={{ height: '480px' }}>
+                    <ConstellationCanvas width={dims.w} height={dims.h} hoveredIndex={hoveredIndex} />
                     {skills.map((skill, i) => (
                         <SkillNode
                             key={skill.name}
@@ -199,7 +162,6 @@ export default function Skills() {
                     ))}
                 </div>
 
-                {/* Skill bars below */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
                     {skills.map((skill, i) => (
                         <motion.div

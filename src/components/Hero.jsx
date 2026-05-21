@@ -7,8 +7,8 @@ const techIcons = [
     { label: 'Node', color: '#68a063', angle: 51 },
     { label: 'Mongo', color: '#4db33d', angle: 102 },
     { label: 'AWS', color: '#ff9900', angle: 153 },
-    { label: 'RN', color: '#61dafb', angle: 204 },
-    { label: 'Chain', color: '#f7931a', angle: 255 },
+    { label: 'Python', color: '#3b82f6', angle: 204 },
+    { label: 'Quantum', color: '#fb923c', angle: 255 },
     { label: 'Fire', color: '#ffca28', angle: 306 },
 ]
 
@@ -78,7 +78,7 @@ export default function Hero() {
                     >
                         <Rocket size={14} className="text-purple-400" />
                         <span className="text-sm text-slate-300 font-medium">
-                            Full Stack & Android Developer
+                            Full Stack & IoT Developer
                         </span>
                         <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     </motion.div>
@@ -114,8 +114,8 @@ export default function Hero() {
                         transition={{ delay: 0.5 }}
                         className="text-slate-400 text-lg leading-relaxed mb-10 max-w-lg"
                     >
-                        I create futuristic web apps, IoT systems, mobile applications, and
-                        intelligent digital experiences using modern technologies.
+                        I create futuristic web apps, IoT systems, AI-powered solutions, and
+                        intelligent digital experiences — currently exploring the frontier of quantum computing.
                     </motion.p>
 
                     {/* Buttons */}

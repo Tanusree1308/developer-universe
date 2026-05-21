@@ -1,48 +1,48 @@
 import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { GraduationCap, Code2, Cpu, Trophy, Smartphone, Brain } from 'lucide-react'
+import { GraduationCap, Code2, Cpu, Trophy, Brain, Atom } from 'lucide-react'
 
 const milestones = [
     {
         icon: GraduationCap,
-        year: '2021',
+        year: '2024',
         title: 'Started B.Tech in CSE',
-        desc: 'Began Computer Science Engineering journey, diving deep into programming fundamentals and algorithms.',
+        desc: 'Began Computer Science Engineering journey, diving deep into programming fundamentals, data structures, and algorithms.',
         color: '#a78bfa',
     },
     {
         icon: Code2,
-        year: '2022',
+        year: '2024',
         title: 'Learned Full Stack Development',
-        desc: 'Mastered React, Node.js, MongoDB, and built complete web applications from scratch.',
+        desc: 'Mastered React, Node.js, MongoDB, and built complete web applications from scratch with modern UI/UX.',
         color: '#38bdf8',
     },
     {
-        icon: Cpu,
-        year: '2022',
-        title: 'Built IoT Projects',
-        desc: 'Developed Smart Baby Incubator and Pond Monitoring System using ESP32, Firebase, and real-time sensors.',
-        color: '#34d399',
-    },
-    {
         icon: Trophy,
-        year: '2023',
+        year: '2024',
         title: 'Won InnovIT Competition',
-        desc: 'Secured 3rd Prize at InnovIT for the Smart Baby Incubator project — a milestone in innovation.',
+        desc: 'Secured 3rd Prize at InnovIT for the Smart Baby Incubator project — a milestone in innovation and engineering.',
         color: '#fbbf24',
     },
     {
-        icon: Smartphone,
-        year: '2023',
-        title: 'Started Mobile App Development',
-        desc: 'Built React Native and Ionic Capacitor apps with MongoDB Atlas backend and authentication.',
-        color: '#f472b6',
+        icon: Cpu,
+        year: '2025',
+        title: 'Built IoT Projects',
+        desc: 'Developed Smart Baby Incubator and Pond Monitoring System using ESP32, Firebase, and real-time sensor networks.',
+        color: '#34d399',
     },
     {
         icon: Brain,
-        year: '2024',
-        title: 'Exploring Blockchain & AI',
-        desc: 'Diving into deep learning, neural networks, and blockchain fundamentals to build the future.',
+        year: '2025',
+        title: 'Exploring Deep Learning & AI',
+        desc: 'Diving into neural networks, deep learning architectures, and building AI-powered intelligent systems.',
+        color: '#f472b6',
+    },
+    {
+        icon: Atom,
+        year: '2026',
+        title: 'Exploring Quantum Computing',
+        desc: 'Currently in 3rd year, venturing into quantum algorithms, qubits, and the future of computational science.',
         color: '#fb923c',
     },
 ]
@@ -60,7 +60,6 @@ function TimelineItem({ item, index, isLeft }) {
             transition={{ delay: index * 0.1, duration: 0.7 }}
             className={`flex items-center gap-6 ${isLeft ? 'flex-row' : 'flex-row-reverse'} mb-12`}
         >
-            {/* Card */}
             <div className="flex-1">
                 <motion.div
                     whileHover={{ scale: 1.02 }}
@@ -92,17 +91,13 @@ function TimelineItem({ item, index, isLeft }) {
                 </motion.div>
             </div>
 
-            {/* Center dot */}
             <div className="flex-shrink-0 flex flex-col items-center">
                 <motion.div
                     initial={{ scale: 0 }}
                     animate={inView ? { scale: 1 } : {}}
                     transition={{ delay: index * 0.1 + 0.3, type: 'spring' }}
                     className="w-5 h-5 rounded-full relative"
-                    style={{
-                        background: item.color,
-                        boxShadow: `0 0 20px ${item.color}`,
-                    }}
+                    style={{ background: item.color, boxShadow: `0 0 20px ${item.color}` }}
                 >
                     <div
                         className="absolute inset-0 rounded-full animate-ping"
@@ -111,7 +106,6 @@ function TimelineItem({ item, index, isLeft }) {
                 </motion.div>
             </div>
 
-            {/* Spacer for opposite side */}
             <div className="flex-1 hidden md:block" />
         </motion.div>
     )
@@ -150,16 +144,13 @@ export default function Journey() {
                     </p>
                 </motion.div>
 
-                {/* Timeline */}
                 <div className="relative">
-                    {/* Vertical line */}
                     <div
                         className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px hidden md:block"
                         style={{
                             background: 'linear-gradient(to bottom, transparent, rgba(139,92,246,0.4), rgba(6,182,212,0.4), transparent)',
                         }}
                     />
-
                     {milestones.map((item, i) => (
                         <TimelineItem key={item.title} item={item} index={i} isLeft={i % 2 === 0} />
                     ))}
