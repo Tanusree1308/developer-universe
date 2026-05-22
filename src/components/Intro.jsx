@@ -1,6 +1,91 @@
-import React, { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown, Search } from 'lucide-react'
+
+const PLANETS = [
+    { name: 'Mercury', id: 'mercury', emoji: '🪨' },
+    { name: 'Venus', id: 'venus', emoji: '🌕' },
+    { name: 'Earth', id: 'earth', emoji: '🌍' },
+    { name: 'Mars', id: 'mars', emoji: '🔴' },
+    { name: 'Jupiter', id: 'jupiter', emoji: '🟠' },
+    { name: 'Saturn', id: 'saturn', emoji: '🪐' },
+    { name: 'Uranus', id: 'uranus', emoji: '🔵' },
+    { name: 'Neptune', id: 'neptune', emoji: '💙' },
+]
+
+function PlanetSearch() {
+    const [query, setQuery] = useState('')
+    const [open, setOpen] = useState(false)
+    const inputRef = useRef(null)
+
+    const results = query.trim()
+        ? PLANETS.filter(p => p.name.toLowerCase().includes(query.toLowerCase()))
+        : PLANETS
+
+    const goTo = (id) => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+        setQuery(''); setOpen(false)
+    }
+
+    return (
+        <div className="relative w-full max-w-md mx-auto mt-10">
+            {/* Input */}
+            <div
+                className="flex items-center gap-3 px-5 py-3.5 rounded-2xl"
+                style={{
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    boxShadow: open ? '0 0 30px rgba(139,92,246,0.25)' : 'none',
+                    transition: 'box-shadow 0.3s',
+                }}
+            >
+                <Search size={16} className="text-purple-400 flex-shrink-0" />
+                <input
+                    ref={inputRef}
+                    value={query}
+                    onChange={e => { setQuery(e.target.value); setOpen(true) }}
+                    onFocus={() => setOpen(true)}
+                    onBlur={() => setTimeout(() => setOpen(false), 150)}
+                    placeholder="Search for a planet..."
+                    className="flex-1 bg-transparent text-white text-sm placeholder-slate-500 outline-none"
+                />
+            </div>
+
+            {/* Dropdown */}
+            <AnimatePresence>
+                {open && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.18 }}
+                        className="absolute top-full left-0 right-0 mt-2 rounded-2xl overflow-hidden z-50"
+                        style={{
+                            background: 'rgba(8,6,18,0.97)',
+                            border: '1px solid rgba(139,92,246,0.25)',
+                            boxShadow: '0 20px 60px rgba(0,0,0,0.7)',
+                        }}
+                    >
+                        {results.map(p => (
+                            <button
+                                key={p.id}
+                                onMouseDown={() => goTo(p.id)}
+                                className="w-full flex items-center gap-3 px-5 py-3 hover:bg-white/5 transition-colors text-left group"
+                            >
+                                <span className="text-lg">{p.emoji}</span>
+                                <span className="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">{p.name}</span>
+                                <span className="ml-auto text-xs text-slate-600 group-hover:text-purple-400 transition-colors">Jump →</span>
+                            </button>
+                        ))}
+                        {results.length === 0 && (
+                            <div className="px-5 py-4 text-sm text-slate-500 text-center">No planet found</div>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    )
+}
 
 // Fire particle canvas
 function FireCanvas() {
@@ -173,6 +258,8 @@ export default function Intro() {
                 <p className="text-slate-500 text-base leading-relaxed max-w-xl mx-auto">
                     Scroll down to journey through each world — from the scorched surface of Mercury to the frozen winds of Neptune.
                 </p>
+
+                <PlanetSearch />
             </motion.div>
 
             <motion.div
