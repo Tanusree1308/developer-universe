@@ -2,10 +2,8 @@ import React, { useState, useCallback } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import StarField from './components/StarField'
 import CursorGlow from './components/CursorGlow'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import SolarSystem from './components/SolarSystem'
-import Contact from './components/Contact'
+import Intro from './components/Intro'
+import PlanetSection from './components/PlanetSection'
 import Footer from './components/Footer'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -23,16 +21,14 @@ export default function App() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8 }}
-                        className="relative min-h-screen"
+                        className="relative"
                         style={{ background: '#020408' }}
                     >
                         <StarField />
                         <CursorGlow />
                         <div className="relative z-10">
-                            <Navbar />
-                            <Hero />
-                            <SolarSystem />
-                            <Contact />
+                            <Intro />
+                            <PlanetSection />
                             <Footer />
                         </div>
                     </motion.div>
