@@ -4,7 +4,7 @@ import StarField from './components/StarField'
 import CursorGlow from './components/CursorGlow'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Stats from './components/Stats'
+import SolarSystem from './components/SolarSystem'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Journey from './components/Journey'
@@ -41,7 +41,7 @@ export default function App() {
                         <div className="relative z-10">
                             <Navbar />
                             <Hero />
-                            <Stats />
+                            <SolarSystem />
                             <Projects />
                             <Skills />
                             <Journey />
