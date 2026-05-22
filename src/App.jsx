@@ -5,10 +5,6 @@ import CursorGlow from './components/CursorGlow'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SolarSystem from './components/SolarSystem'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import Journey from './components/Journey'
-
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -20,7 +16,6 @@ export default function App() {
     return (
         <>
             <LoadingScreen onComplete={handleLoadComplete} />
-
             <AnimatePresence>
                 {loaded && (
                     <motion.div
@@ -31,20 +26,12 @@ export default function App() {
                         className="relative min-h-screen"
                         style={{ background: '#020408' }}
                     >
-                        {/* Background */}
                         <StarField />
-
-                        {/* Custom cursor */}
                         <CursorGlow />
-
-                        {/* Content */}
                         <div className="relative z-10">
                             <Navbar />
                             <Hero />
                             <SolarSystem />
-                            <Projects />
-                            <Skills />
-                            <Journey />
                             <Contact />
                             <Footer />
                         </div>

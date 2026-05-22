@@ -86,7 +86,7 @@ export default function Footer() {
 
                 <div className="mt-8 pt-6 border-t border-white/5 text-center">
                     <p className="text-slate-600 text-xs font-mono">
-                        © 2024 Developer Universe · Built with React + Tailwind + Framer Motion
+                        © 2024 Developer Universe · A journey through the cosmos
                     </p>
                 </div>
             </div>

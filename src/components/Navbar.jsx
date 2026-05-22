@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Zap } from 'lucide-react'
 
-const links = ['Home', 'Projects', 'Skills', 'Journey', 'Contact']
+const links = ['Home', 'Solar System', 'Galaxy', 'Contact']
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
@@ -15,7 +15,8 @@ export default function Navbar() {
     }, [])
 
     const scrollTo = (id) => {
-        const el = document.getElementById(id.toLowerCase())
+        const map = { 'Solar System': 'solarsystem', 'Galaxy': 'galaxy' }
+        const el = document.getElementById(map[id] || id.toLowerCase())
         if (el) el.scrollIntoView({ behavior: 'smooth' })
         setOpen(false)
     }

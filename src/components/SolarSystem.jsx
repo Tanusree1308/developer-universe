@@ -267,7 +267,7 @@ export default function SolarSystem() {
     const activePlanet = selected !== null ? planets[selected] : null
 
     return (
-        <section ref={sectionRef} className="relative py-20 px-4 overflow-hidden">
+        <section ref={sectionRef} id="solarsystem" className="relative py-20 px-4 overflow-hidden">
             {/* Section header */}
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
